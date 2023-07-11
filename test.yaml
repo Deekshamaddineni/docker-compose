@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deekshatest
+  name: docker
   labels:
-    app: 
+    app: myapp
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: 
+      app: myapp
   template:
     metadata:
       labels:
-        app: 
+        app: myapp
     spec:
       containers:
-      - name: 
-        image: 
+      - name: dockerdep-10-app
+        image: nbyreddy/dockerdep-10-app:1.0.0
         ports:
-        - containerPort: 80
+        - containerPort: 80
