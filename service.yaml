@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: dotnetdocker-app
+  name: newdotnet-d-app
   namespace: deeksha
 spec:
   selector:
-    app: dotnetdocker-app
+    app: newdotnet-d-app
   ports:
     - protocol: TCP
       port: 80
