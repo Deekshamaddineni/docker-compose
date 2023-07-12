@@ -1,12 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-service
+  name: docker
   namespace: deeksha
 spec:
   selector:
-    app: dotnetdemo
-  type: Loadbalancer
+    app: docker
   ports:
     - protocol: TCP
       port: 80
