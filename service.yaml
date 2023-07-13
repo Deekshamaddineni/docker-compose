@@ -6,8 +6,7 @@ metadata:
 spec:
   selector:
     app: newdotnet-d-app
-   type:LoadBalancer
-    sessionAffinity:None
+    type: LoadBalancer
   ports:
     - protocol: TCP
       port: 80
