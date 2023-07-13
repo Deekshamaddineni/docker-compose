@@ -20,3 +20,5 @@ spec:
         image: deekshamaddineni/dee
         ports:
         - containerPort: 5000
+      imagePullSecrets:
+      - name: acr-secret
