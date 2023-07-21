@@ -10,11 +10,23 @@ spec:
   selector:
     matchLabels:
       app: newdotnet-d-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
   template:
     metadata:
       labels:
         app: newdotnet-d-app
     spec:
+      initContainers:
+      - name: init-setup
+        image: deekshamaddineni/dee
+        command: ['sh', '-c', 'ls; pwd; sleep 10']
+        envFrom:
+        - configMapRef:
+            name: newdotnet-d-app
       containers:
       - name: newdotnet-d-app
         image: deekshamaddineni/dee
@@ -22,3 +34,23 @@ spec:
         - containerPort: 5000
       imagePullSecrets:
       - name: acr-secret
+        livenessProbe:
+          httpGet:
+            path: /_status/healthz
+            port: 5000   # Corrected port to match the containerPort
+          initialDelaySeconds: 8
+          periodSeconds: 10
+          failureThreshold: 3  # Corrected field name
+          successThreshold: 1  # Corrected field name
+        readinessProbe:
+          httpGet:
+            path: /readiness
+            port: 5000   # Corrected port to match the containerPort
+          initialDelaySeconds: 15
+          periodSeconds: 5
+        env:
+        - name: newdotnet-d-app-deployment 
+          valueFrom:
+            configMapKeyRef:
+              key: DB_HOST
+              name: newdotnet-d-app-deployment 
