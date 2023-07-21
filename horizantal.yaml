@@ -1,7 +1,7 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: newdotnet-d-app-deployment
+  name: newdotnet-d-app-hpa
   namespace: deeksha
 spec:
   scaleTargetRef:
@@ -14,6 +14,6 @@ spec:
   - type: Resource
     resource:
       name: cpu
-    target:
-      type: Utilization
-      averageUtilization: 50
+      target:
+        type: Utilization
+        averageUtilization: 50
