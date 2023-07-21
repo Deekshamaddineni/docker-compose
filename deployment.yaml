@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: newdotnet-d-app-deployment 
+  name: hello12345-deployment 
   labels:
     app: newdotnet-d-app
   namespace: deeksha
@@ -49,8 +49,8 @@ spec:
           initialDelaySeconds: 15
           periodSeconds: 5
         env:
-        - name: newdotnet-d-app-deployment 
+        - name: hello12345-deployment 
           valueFrom:
             configMapKeyRef:
               key: DB_HOST
-              name: newdotnet-d-app-deployment 
+              name: hello12345-deployment 
