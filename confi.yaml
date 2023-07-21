@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: newdotnet-d-app
+  name: hello12345-deployment
   namespace: deeksha
 data:
   DB_HOST: key
