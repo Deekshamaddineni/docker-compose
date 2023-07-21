@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello12345-deployment 
+  name: newdotnet-d-app-deployment 
   namespace: deeksha
 spec:
   selector:
