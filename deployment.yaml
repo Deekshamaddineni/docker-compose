@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: newdotnet-d-app-deployment
-  namespace: abcd
+  name: new-docker-app-deployment
+  namespace: nv1
   labels:
-    app: newdotnet-d-app
+    app: new-docker-app
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: newdotnet-d-app
+      app: new-docker-app
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        app: newdotnet-d-app
+        app: new-docker-app
     spec:
       initContainers:
       - name: init-setup
@@ -26,29 +26,29 @@ spec:
         command: ['sh', '-c', 'ls; pwd; sleep 10']
         envFrom:
         - configMapRef:
-            name: newdotnet-d-app-deployment
+            name: new-docker-app-deployment
       containers:
-      - name: newdotnet-d-app
-        image: hello12345.azurecr.io/newdotnet-d-app:latest
+      - name: new-docker-app
+        image: kubeassignment.azurecr.io/new_docker-app:latest
         ports:
         - containerPort: 5000
         livenessProbe:
           httpGet:
             path: /_status/healthz
-            port: 5000   # Corrected port to match the containerPort
+            port: 5000
           initialDelaySeconds: 8
           periodSeconds: 10
-          failureThreshold: 3  # Corrected field name
-          successThreshold: 1  # Corrected field name
+          failureThreshold: 3
+          successThreshold: 1
         readinessProbe:
           httpGet:
             path: /readiness
-            port: 5000   # Corrected port to match the containerPort
+            port: 5000
           initialDelaySeconds: 15
           periodSeconds: 5
         env:
-        - name: newdotnet-d-app-deployment
+        - name: new-docker-app-deployment
           valueFrom:
             configMapKeyRef:
               key: DB_HOST
-              name: newdotnet-d-app-deployment
+              name: new-docker-app-deployment
