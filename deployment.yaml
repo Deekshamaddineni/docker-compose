@@ -20,6 +20,15 @@ spec:
       labels:
         app: newdotnet-d-app
     spec:
+      affinity:                        # Add the affinity section for node affinity
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: my_node_label       # Replace 'my_node_label' with the actual label on the nodes you want to target
+                operator: In
+                values:
+                - my_node_label_value    # Replace 'my_node_label_value' with the value of the label on the nodes you want to target
       initContainers:
       - name: init-setup
         image: busybox:latest
