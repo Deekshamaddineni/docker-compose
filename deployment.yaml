@@ -29,7 +29,7 @@ spec:
             name: newdotnet-d-app-deployment
       containers:
       - name: newdotnet-d-app
-        image: hello12345.azurecr.io/newdotnet-d-app
+        image: hello12345.azurecr.io/newdotnet-d-app:latest
         ports:
         - containerPort: 5000
         livenessProbe:
