@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: newdotnet-d-app-deployment
+  name: assignnew:1.0.1-deployment
   namespace: abcd
 data:
   DB_HOST: key
