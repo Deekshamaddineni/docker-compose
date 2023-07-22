@@ -1,12 +1,12 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: new-docker-app-network-policy
-  namespace: nv1
+  name: newdotnet-d-app-network-policy
+  namespace: abcd
 spec:
   podSelector:
     matchLabels:
-      app: new-docker-app
+      app: newdotnet-d-app
   policyTypes:
     - Ingress
     - Egress
@@ -14,9 +14,9 @@ spec:
     - from:
       - podSelector:
           matchLabels:
-            app: new-docker-app
+            app: newdotnet-d-app
   egress:
     - to:
       - podSelector:
           matchLabels:
-            app: new-docker-app
+            app: newdotnet-d-app
