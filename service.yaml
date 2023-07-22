@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: assignnew:1.0.1-deployment 
+  name: assignnew-1.0.1-deployment 
   namespace: abcd
 spec:
   selector:

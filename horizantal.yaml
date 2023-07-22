@@ -1,13 +1,13 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: assignnew:1.0.1-hpa
+  name: assignnew-1.0.1-hpa
   namespace: abcd
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: assignnew:1.0.1-deployment
+    name: assignnew-1.0.1-deployment
   minReplicas: 1
   maxReplicas: 10
   metrics:
