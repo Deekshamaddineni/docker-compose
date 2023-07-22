@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: newdotnet-d-app-deployment
-  namespace: abcd
+  namespace: deekshamaddineni
   labels:
     app: newdotnet-d-app
 spec:
