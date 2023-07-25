@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: newdotnet-d-app-deployment
-  namespace: deekshamaddineni
+  namespace: abcd
   labels:
     app: newdotnet-d-app
 spec:
@@ -20,44 +20,41 @@ spec:
       labels:
         app: newdotnet-d-app
     spec:
-      affinity:                        # Add the affinity section for node affinity
+      affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-            - matchExpressions:
-              - key: my_node_label       # Replace 'my_node_label' with the actual label on the nodes you want to target
-                operator: In
-                values:
-                - my_node_label_value    # Replace 'my_node_label_value' with the value of the label on the nodes you want to target
-      initContainers:
-      - name: init-setup
-        image: busybox:latest
-        command: ['sh', '-c', 'ls; pwd; sleep 10']
-        envFrom:
-        - configMapRef:
-            name: newdotnet-d-app-deployment
+              - matchExpressions:
+                  - key: environment
+                    operator: In
+                    values:
+                      - production
       containers:
-      - name: newdotnet-d-app
-        image:  deekshamaddineni/dee:latest
-        ports:
-        - containerPort: 5000
-        livenessProbe:
-          httpGet:
-            path: /_status/healthz
-            port: 5000
-          initialDelaySeconds: 8
-          periodSeconds: 10
-          failureThreshold: 3
-          successThreshold: 1
-        readinessProbe:
-          httpGet:
-            path: /readiness
-            port: 5000
-          initialDelaySeconds: 15
-          periodSeconds: 5
-        env:
-        - name: newdotnet-d-app-deployment
-          valueFrom:
-            configMapKeyRef:
-              key: DB_HOST
-              name: newdotnet-d-app-deployment
+        - name: newdotnet-d-app
+          image: deekshamaddineni/dee:latest
+          ports:
+            - containerPort: 5000
+          livenessProbe:
+            httpGet:
+              path: /_status/healthz
+              port: 5000
+            initialDelaySeconds: 8
+            periodSeconds: 10
+            failureThreshold: 3
+            successThreshold: 1
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 5000
+            initialDelaySeconds: 15
+            periodSeconds: 5
+          env:
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: newdotnet-d-app-deployment
+                  key: DB_HOST
+      tolerations:  
+        - key: "special"
+          operator: "Exists"
+          effect: "NoSchedule"
