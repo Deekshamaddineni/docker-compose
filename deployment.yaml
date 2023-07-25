@@ -57,4 +57,4 @@ spec:
       tolerations:  
         - key: "special"
           operator: "Exists"
-          effect: "NoSchedule"
+          effect: "NoSchedule"
