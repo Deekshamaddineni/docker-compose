@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: anewdotnet-d-app-deployment
-  namespace: deekshamaddineni
+  namespace: redblue
 data:
   DB_HOST: key
   # Add other configuration key-value pairs as needed
