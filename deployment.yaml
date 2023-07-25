@@ -25,10 +25,10 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
               - matchExpressions:
-                  - key: environment
+                  - key: env
                     operator: In
                     values:
-                      - production
+                      - prod
       containers:
         - name: newdotnet-d-app
           image: deekshamaddineni/dee:latest
