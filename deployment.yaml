@@ -25,10 +25,10 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
               - matchExpressions:
-                  - key: environment
+                  - key: env
                     operator: In
                     values:
-                      - production
+                      - prob
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
@@ -63,7 +63,4 @@ spec:
                 configMapKeyRef:
                   name: newdotnet-d-app-deployment
                   key: DB_HOST
-      tolerations:  
-        - key: "special"
-          operator: "Exists"
-          effect: "NoSchedule"
+      
