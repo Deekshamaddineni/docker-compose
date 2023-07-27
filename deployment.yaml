@@ -36,7 +36,7 @@ spec:
                   - key: app
                     operator: In
                     values:
-                      - new-docker-app
+                      - newdotnet-d-app
               topologyKey: "kubernetes.io/hostname"
       containers:
         - name: newdotnet-d-app
