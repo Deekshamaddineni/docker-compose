@@ -25,10 +25,19 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
               - matchExpressions:
-                  - key: env
+                  - key: environment
                     operator: In
                     values:
-                      - prod
+                      - production
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - new-docker-app
+              topologyKey: "kubernetes.io/hostname"
       containers:
         - name: newdotnet-d-app
           image: deekshamaddineni/dee:latest
@@ -54,4 +63,7 @@ spec:
                 configMapKeyRef:
                   name: newdotnet-d-app-deployment
                   key: DB_HOST
-      
+      tolerations:  
+        - key: "special"
+          operator: "Exists"
+          effect: "NoSchedule"
