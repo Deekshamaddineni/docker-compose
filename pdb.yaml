@@ -6,4 +6,4 @@ spec:
   selector:
     matchLabels:
       app: newdotnet-d-app  
-  minAvailable: 1        
+  minAvailable: 1     
