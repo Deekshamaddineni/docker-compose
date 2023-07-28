@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: fluentd-daemon
-  namespace: redblue   
+  namespace: de   
 spec:
   selector:
     matchLabels:

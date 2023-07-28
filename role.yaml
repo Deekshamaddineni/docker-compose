@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: newdotnet-d-app-role
-  namespace: redblue
+  namespace: de
 rules:
 - apiGroups: ["apps"]
   resources: ["deployments"]
