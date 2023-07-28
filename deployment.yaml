@@ -40,7 +40,7 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
         - name: newdotnet-d-app
-          image: deekshamaddineni/dee:latest
+          image: myimage:1.0.0
           ports:
             - containerPort: 5000
           livenessProbe:
