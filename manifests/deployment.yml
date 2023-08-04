@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: deekshamaddinenidockercompose 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deekshamaddinenidockercompose
+  template:
+    metadata:
+      labels:
+        app: deekshamaddinenidockercompose 
+    spec:
+      containers:
+        - name: deekshamaddinenidockercompose 
+          image: testreg1999.azurecr.io/deekshamaddinenidockercompose
+          ports:
+          - containerPort: 5000
